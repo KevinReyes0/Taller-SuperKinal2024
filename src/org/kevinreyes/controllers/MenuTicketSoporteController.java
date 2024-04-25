@@ -21,6 +21,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import org.kevinreyes.dao.Conexion;
 import org.kevinreyes.model.Cliente;
+import org.kevinreyes.model.TicketSoporte;
 import org.kevinreyes.system.Main;
 
 /**
@@ -52,8 +53,29 @@ public class MenuTicketSoporteController implements Initializable {
         cmbEstatus.getItems().add("En proceso");
         cmbEstatus.getItems().add("Finalizado");
         
+    }
+    
+    public ObservableList<TicketSoporte> listarTickets() {
+        ArrayList<TicketSoporte> tickets = new ArrayList<>();
         
-
+        try{
+            conexion = Conexion.getInstance().obtenerConexion();
+            String sql = "call sp_ListarTicketSoporte ()";
+            statement = conexion.prepareStatement (sql);
+            resultSet = statement.executeQuery();
+            
+            while(resultSet.next()){
+                int ticketSoporteId = resultSet.getInt("ticketSoporteId");
+                String descripcion = resultSet.getString("descripcionTicket");
+                String estatus = resultSet.getString ("estatuts");
+                String cliente = resultSet.getString ("cliente");
+                int facturaId = resultSet.getInt("facturaId");
+                
+                tickets.add(new TicketSoporte(ticketSoporteId, descripcion, estatus, cliente, facturaId));
+            }
+        }catch (SQLExeption e){
+            System.out.println(e.getMessage());
+        }
     }
     
     public ObservableList<Cliente> listarClientes(){
