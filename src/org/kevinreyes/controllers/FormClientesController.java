@@ -19,6 +19,7 @@ import org.kevinreyes.dao.Conexion;
 import org.kevinreyes.dto.ClienteDTO;
 import org.kevinreyes.model.Cliente;
 import org.kevinreyes.system.Main;
+import org.kevinreyes.utils.SuperKinalAlert;
 
 /**
  * FXML Controller class
@@ -49,8 +50,15 @@ public class FormClientesController implements Initializable {
             ClienteDTO.getClienteDTO().setCliente(null);
         }else if(event.getSource() == btnGuardar){
             if(op == 1){
-                agregarCliente();
-                stage.menuClientesView();
+                if(!tfNombre.getText().equals("") && !tfApellido.getText().equals("") && !tfDireccion.getText().equals("")){
+                    agregarCliente();
+                    stage.menuClientesView();
+                }else {
+                    SuperKinalAlert.getInstance().mostrarAlertaInfo(100);
+                    tfNombre.requestFocus();
+                    return; 
+                }
+
             }else if(op == 2)
                 editarCliente();
                 ClienteDTO.getClienteDTO().setCliente(null);
