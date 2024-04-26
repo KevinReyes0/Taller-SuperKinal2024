@@ -26,7 +26,7 @@
             <Font size="14.0" />
          </font>
       </TextField>
-      <TableView fx:id="tblClientes" layoutX="310.0" layoutY="319.0" prefHeight="290.0" prefWidth="585.0">
+      <TableView fx:id="tblClientes" layoutX="310.0" layoutY="319.0" onMouseClicked="#cargarDatosEditar" prefHeight="290.0" prefWidth="585.0">
         <columns>
             <TableColumn fx:id="colTicketId" prefWidth="66.0" text="TicketId" />
           <TableColumn fx:id="colDescripcion" prefWidth="230.0" text="Descripcion" />
@@ -46,5 +46,6 @@
       </Button>
       <Button fx:id="btnGuardar" layoutX="71.0" layoutY="584.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="32.0" prefWidth="81.0" style="-fx-background-radius: 10;" text="Guardar" />
       <ComboBox fx:id="cmbEstatus" layoutX="71.0" layoutY="400.0" prefHeight="28.0" prefWidth="166.0" />
+      <Button fx:id="btnVaciarForm" layoutX="170.0" layoutY="584.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="32.0" prefWidth="81.0" style="-fx-background-radius: 10;" text="Vaciar Form" />
    </children>
 </AnchorPane>
