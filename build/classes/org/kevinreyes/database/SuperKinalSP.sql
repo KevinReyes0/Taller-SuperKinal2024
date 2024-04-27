@@ -588,10 +588,10 @@ delimiter ;
 
 -- TICKET SOPORTE --
 delimiter $$
-	create procedure sp_AgregarTicketSoporte (in descTick varchar (250), in est varchar (30), in cliId int, in facId int)
+	create procedure sp_AgregarTicketSoporte (in descTick varchar (250), in cliId int, in facId int)
 		begin 
 			insert into Facturas (descripcionTicket, estatuts , clienteId , facturaId)
-				values (descTick, est, cliId, facId);
+				values (descTick, 'Recien Creado', cliId, facId);
 		end$$
 delimiter ;
 
