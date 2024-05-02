@@ -16,6 +16,7 @@ import javafx.scene.layout.AnchorPane;
 import org.kevinreyes.controllers.MenuClientesController;
 import org.kevinreyes.controllers.MenuPrincipalController;
 import org.kevinreyes.controllers.FormClientesController;
+import org.kevinreyes.controllers.MenuCargosController;
 import org.kevinreyes.controllers.MenuTicketSoporteController;
 
 /**
@@ -61,7 +62,18 @@ public class Main extends Application {
             e.printStackTrace();
         }
     }
+    //Cargos
+    public void menuCargosView(){
+        try{
+            MenuCargosController menuCargosView = (MenuCargosController)switchScene("MenuCargosView.fxml", 1350, 650);
+            menuCargosView.setStage(this);
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
+    }
     
+    //Clientes
     public void menuClientesView(){
         try{
             MenuClientesController menuClientesView = (MenuClientesController)switchScene("MenuClientesView.fxml", 1350, 650);
@@ -71,6 +83,7 @@ public class Main extends Application {
             e.printStackTrace();
         }
     }
+    
     
     public void formClientesView(int op){
         try{
@@ -84,7 +97,6 @@ public class Main extends Application {
     }
     
     public void menuTicketSoporteView(){
-        
         try{
             
             MenuTicketSoporteController menuTicketSoporteView = (MenuTicketSoporteController)switchScene("MenuTicketSoporteView.fxml", 1350, 650);
@@ -98,6 +110,7 @@ public class Main extends Application {
     /**
      * @param args the command line arguments
      */
+            
     public static void main(String[] args) {
         launch(args);
     }

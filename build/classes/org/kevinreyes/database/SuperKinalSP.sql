@@ -8,6 +8,10 @@ DELIMITER $$
 				values (nom, des);
 		end $$
 DELIMITER ;
+call sp_AgregarCargos('Gerente', 'Administra el super mecado');
+call sp_AgregarCargos('Gerente', 'Administra el super mecado');
+call sp_AgregarCargos('Gerente', 'Administra el super mecado');
+select * from Cargos;
 
 DELIMITER $$ 
 	create procedure sp_ListarCargos()
@@ -220,7 +224,7 @@ DELIMITER ;
 
 -- Clientes --
 DELIMITER $$ 
-	create procedure sp_AgregarCliente(in nom varchar (30), in ape varchar (30), in tel varchar (15), in dir varchar (150), in nit_ varchar(15))
+	create procedure sp_AgregarClientes(in nom varchar (30), in ape varchar (30), in tel varchar (15), in dir varchar (150), in nit_ varchar(15))
 		begin 	
 			insert into Clientes (nombre, apellido,telefono,direccion,nit)
 			values (nom, ape,tel,dir,nit_);
@@ -242,7 +246,7 @@ DELIMITER $$
 DELIMITER ;
 
 DELIMITER $$ 
-	create procedure sp_EliminarCliente(in cliId int)
+	create procedure sp_EliminarClientes(in cliId int)
 		begin
 			delete
 			from Clientes 
@@ -266,7 +270,7 @@ DELIMITER $$
 DELIMITER ;
 
 DELIMITER $$ 
-	create procedure sp_EditarCliente(in cliId int,in nom varchar (30), in ape varchar (30), in tel varchar (15), in dir varchar (150), in ni varchar(15))
+	create procedure sp_EditarClientes(in cliId int,in nom varchar (30), in ape varchar (30), in tel varchar (15), in dir varchar (150), in ni varchar(15))
 		begin
 			update Clientes
 				set

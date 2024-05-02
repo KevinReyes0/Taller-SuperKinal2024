@@ -141,6 +141,8 @@ create table DetalleFactura (
 		references Productos (productoId)
 );
 
+insert into Clientes (nombre, apellido, telefono, direccion, nit) values
+	('kevin', 'Reyes', '2020-6022', 'Peten', 'cf'); 
 
 
 
