@@ -18,7 +18,7 @@
             <Image url="@../image/MenuCargosView.png" />
          </image>
       </ImageView>
-      <TableView fx:id="tbCargos" layoutX="34.0" layoutY="181.0" prefHeight="437.0" prefWidth="1120.0">
+      <TableView fx:id="tblCargos" layoutX="34.0" layoutY="181.0" opacity="0.86" prefHeight="437.0" prefWidth="1120.0">
         <columns>
           <TableColumn fx:id="colCargoId" prefWidth="75.0" text="CargoId" />
           <TableColumn fx:id="colNombreCargo" prefWidth="340.0" text="Nombre del Cargo" />
@@ -36,13 +36,13 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button fx:id="btnAgregar" mnemonicParsing="false" prefHeight="70.0" prefWidth="100.0" text="Agregar" GridPane.halignment="CENTER" />
-            <Button fx:id="btnEditar" mnemonicParsing="false" prefHeight="70.0" prefWidth="100.0" text="Editar" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-            <Button fx:id="btnEliminar" mnemonicParsing="false" prefHeight="70.0" prefWidth="100.0" text="Eliminar" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+            <Button fx:id="btnAgregar" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="70.0" prefWidth="100.0" text="Agregar" GridPane.halignment="CENTER" />
+            <Button fx:id="btnEditar" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="70.0" prefWidth="100.0" text="Editar" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+            <Button fx:id="btnEliminar" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="70.0" prefWidth="100.0" text="Eliminar" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
             <Button fx:id="btnReportes" mnemonicParsing="false" prefHeight="70.0" prefWidth="100.0" text="Reportes" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
          </children>
       </GridPane>
-      <Button fx:id="btnBuscar" layoutX="1093.0" layoutY="87.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="45.0">
+      <Button fx:id="btnBuscar" layoutX="1093.0" layoutY="87.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="46.0" prefWidth="45.0">
          <graphic>
             <ImageView fitHeight="38.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
                <image>

@@ -37,6 +37,7 @@ DELIMITER $$
 	create procedure sp_BuscarCargos(in carId int)
 		begin
 			select 	
+				Cargos.cargoId,
 				Cargos.nombreCargo,
 				Cargos.descripcionCargo
 					from Cargos

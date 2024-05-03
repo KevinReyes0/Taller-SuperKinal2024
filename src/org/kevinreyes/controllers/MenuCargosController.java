@@ -23,6 +23,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.kevinreyes.dao.Conexion;
+import org.kevinreyes.dto.CargoDTO;
 import org.kevinreyes.model.Cargos;
 import org.kevinreyes.system.Main;
 
@@ -45,10 +46,12 @@ public class MenuCargosController implements Initializable {
     TableColumn colCargoId, colNombreCargo, colDescripcionCargo;
     
     @FXML
-    Button  btnEliminar, btnBuscar;
+    Button  btnEliminar, btnBuscar, btnAgregar, btnEditar, btnReportes, btnRegresar;
     
     @FXML
     TextField tfBuscar;
+
+    
     /**
      * Initializes the controller class.
      */
@@ -57,6 +60,31 @@ public class MenuCargosController implements Initializable {
         cargarLista();
     } 
     
+    @FXML
+    public void handleButtonAction(ActionEvent event){
+        if (event.getSource() == btnEliminar){
+            int carId = ((Cargos)tblCargos.getSelectionModel().getSelectedItem()).getCargoId();
+            eliminarCargos(carId);
+            cargarLista();
+        }else if (event.getSource() == btnBuscar){
+            tblCargos.getItems().clear();
+            if(tfBuscar.getText().equals("")){
+                cargarLista();
+            }else{
+                tblCargos.getItems().add(buscarCargo());
+                colCargoId.setCellValueFactory(new PropertyValueFactory<Cargos, Integer >("cargoId"));
+                colNombreCargo.setCellValueFactory(new PropertyValueFactory<Cargos, Integer >("nombreCargo"));
+                colDescripcionCargo.setCellValueFactory(new PropertyValueFactory<Cargos, Integer >("descripcionCargo"));
+            }
+        }else if(event.getSource() == btnAgregar){
+            stage.formCargosView(1);
+        }else if(event.getSource() == btnEditar){
+            CargoDTO.getCargoDTO().setCargos((Cargos)tblCargos.getSelectionModel().getSelectedItem());
+            stage.formCargosView(2);
+        }else if(event.getSource() == btnRegresar){
+            stage.menuPrincipalView();
+        }
+    }
     
     public void cargarLista (){
         tblCargos.setItems(listarCargos());
@@ -102,28 +130,7 @@ public class MenuCargosController implements Initializable {
         return FXCollections.observableList(cargos);
     }
     
-    @FXML
-    public void handleButtonAction(ActionEvent event){
-        if (event.getSource() == btnEliminar){
-            int carId = ((Cargos)tblCargos.getSelectionModel().getSelectedItem()).getCargoId();
-            eliminarCargos(carId);
-            cargarLista();
-        }
-    }else if (event.getSource() == btnBuscar){
-            tblCargos.getItems().clear();
-            if(tfBuscar.getText().equals("")){
-                cargarLista();
-            }else{
-                tblCargos.getItems().add(buscarCargo());    
-                colCargoId.setCellValueFactory(new PropertyValueFactory<Cargos, Integer >("cargoId"));
-                colNombreCargo.setCellValueFactory(new PropertyValueFactory<Cargos, Integer >("nombreCargo"));
-                colDescripcionCargo.setCellValueFactory(new PropertyValueFactory<Cargos, Integer >("descripcionCargo"));
-            }
-        }
-
-
-
-public void eliminarCargos(int carId){
+    public void eliminarCargos(int carId){
         try{
             conexion = Conexion.getInstance().obtenerConexion();
             String sql = "call sp_EliminarCargos(?)";
@@ -182,11 +189,7 @@ public void eliminarCargos(int carId){
         return cargos;
         
     }
-    
-    
-    
-    
-
+ 
     public Main getStage() {
         return stage;
     }

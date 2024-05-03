@@ -46,6 +46,11 @@ public class Cargos {
     public void setDescripcionCargo(String descripcionCargo) {
         this.descripcionCargo = descripcionCargo;
     }
+
+    @Override
+    public String toString() {
+        return "Cargos{" + "cargoId=" + cargoId + ", nombreCargo=" + nombreCargo + ", descripcionCargo=" + descripcionCargo + '}';
+    }
     
     
     

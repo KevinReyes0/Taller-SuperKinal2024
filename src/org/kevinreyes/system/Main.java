@@ -13,6 +13,7 @@ import java.io.InputStream;
 import javafx.fxml.JavaFXBuilderFactory;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
+import org.kevinreyes.controllers.FormCargosController;
 import org.kevinreyes.controllers.MenuClientesController;
 import org.kevinreyes.controllers.MenuPrincipalController;
 import org.kevinreyes.controllers.FormClientesController;
@@ -72,6 +73,21 @@ public class Main extends Application {
             e.printStackTrace();
         }
     }
+    
+     public void formCargosView(int op){
+        try{
+            FormCargosController formCargosView = (FormCargosController)switchScene("FormCargosView.fxml", 500, 640);
+            formCargosView.setOp(op);
+            formCargosView.setStage(this);
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
+    }
+     
+     
+    //Compras
+     
     
     //Clientes
     public void menuClientesView(){
