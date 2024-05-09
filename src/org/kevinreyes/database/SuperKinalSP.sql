@@ -113,40 +113,45 @@ DELIMITER ;
 DELIMITER $$ 
 	create procedure sp_AgregarCategoriaProductos(in nom varchar (30), in des varchar (100))
 		begin 	
-			insert into CategoriaProductos (nombreCategoria , descripcionCategoria )
+			insert into CategoriaProductos (nombreCategoria , decripcionCategoria)
 			values (nom, des);
 		end$$
 DELIMITER ;
 
+call sp_AgregarCategoriaProductos('Comida', 'Todo lo relacionado con los alimentos');
+
+select * from CategoriaProductos;
 DELIMITER $$ 
 	create procedure sp_ListarCategoriaProductos()
 		begin 
 			select
-				CategoriaProductos.categoriaProductoId, 
+				CategoriaProductos.categoriaProductosId, 
 				CategoriaProductos.nombreCategoria,  
-				CategoriaProductos.descripcionCategoria  
+				CategoriaProductos.decripcionCategoria  
 					from CategoriaProductos;
 		end$$
 DELIMITER ;
-
+call sp_ListarCategoriaProductos();
 DELIMITER $$ 
 	create procedure sp_EliminarCategoriaProductos(in catId  int)
 		begin
 			delete
 			from CategoriaProductos 
-				where categoriaProductoId  =  catId;
+				where categoriaProductosId  =  catId;
 		end$$
 DELIMITER ;
+
+call sp_EliminarCategoriaProductos(3);
 
 DELIMITER $$ 
 	create procedure sp_BuscarCategoriaProductos(in catId  int)
 		begin
 			select 	
-				CategoriaProductos.categoriaProductoId, 
+				CategoriaProductos.categoriaProductosId, 
 				CategoriaProductos.nombreCategoria,  
-				CategoriaProductos.descripcionCategoria  
+				CategoriaProductos.decripcionCategoria 
 					from CategoriaProductos
-					where categoriaProductoId  = catId;	
+					where categoriaProductosId  = catId;	
 		end$$
 DELIMITER ;
 
@@ -156,8 +161,8 @@ DELIMITER $$
 			update CategoriaProductos
 				set
 					nombreCategoria  = nom,
-					descripcionCategoria = ape
-					where categoriaProductoId = catId;
+					decripcionCategoria = des
+					where categoriaProductosId = catId;
 		end$$
 DELIMITER ;
 
@@ -169,7 +174,7 @@ DELIMITER $$
 			values (nom, dir,nit,tel,web);
 		end$$
 DELIMITER ; 
-
+call sp_AgregarDistribuidores('Carnes', 'Quiche', '2020-602', '8989-3202', 'www.CarnesGuatemala.com');
 DELIMITER $$ 
 	create procedure sp_ListarDistribuidores()
 		begin 
@@ -183,6 +188,7 @@ DELIMITER $$
 					from Distribuidores;
 		end$$
 DELIMITER ;
+call sp_ListarDistribuidores();
 
 DELIMITER $$ 
 	create procedure sp_EliminarDistribuidores(in disId int)
@@ -192,6 +198,7 @@ DELIMITER $$
 				where distribuidorId =  disId;
 		end$$
 DELIMITER ;
+call sp_EliminarDistribuidores(3);
 
 DELIMITER $$ 
 	create procedure sp_BuscarDistribuidores(in disId int)
@@ -207,9 +214,10 @@ DELIMITER $$
 					where distribuidorId = disId;
 		end$$
 DELIMITER ;
+call sp_BuscarDistribuidores(2);
 
 DELIMITER $$ 
-	create procedure sp_EditarDistribuidores(in disId int, in nom varchar (30), in dir varchar (200), in nit varchar(15), in tel varchar(15),  in web varchar(50))
+	create procedure sp_EditarDistribuidores(in disId int, in nom varchar (30), in dir varchar (200), in nit varchar(15), in tel varchar(15),  in web_ varchar(50))
 		begin
 			update Distribuidores
 				set
@@ -217,10 +225,13 @@ DELIMITER $$
 					direccionDistribuidor = dir,
 					nitDistribuidor = nit,
 					telefonoDistribuidor = tel ,
-					web = web
-					where clienteId = cliId;
+					web = web_
+					where distribuidorId = disId;
 	end$$
 DELIMITER ;
+
+call sp_EditarDistribuidores(1, 'Samsung', 'Corea del Sur', '2023-465', '911750015', 'www.samsung.com');
+
 
 
 -- Clientes --

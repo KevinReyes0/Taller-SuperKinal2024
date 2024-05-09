@@ -141,11 +141,17 @@ create table DetalleFactura (
 		references Productos (productoId)
 );
 
-insert into Clientes (nombre, apellido, telefono, direccion, nit) values
-	('kevin', 'Reyes', '2020-6022', 'Peten', 'cf'),
-    ('kevin', 'Reyes', '2020-6022', 'Peten', 'cf'), 
-    ('kevin', 'Reyes', '2020-6022', 'Peten', 'cf'); 
+insert into Clientes(nombre, apellido, telefono, direccion, nit) values
+	('Sergio', 'Calderon', '9090=6023', 'Peten', 'CF'),
+    ('Kevin', 'Reyes', '9020=6013', 'Antigua', 'CF');
 
+insert into CategoriaProductos (nombreCategoria, decripcionCategoria) values
+	('Tecnologia', 'Se trata de todo lo que tiene que ver con tecnologias'),
+    ('Cocina', 'Se trata de toda el area de cocina');
+    
+insert into Distribuidores (nombreDistribuidor, direccionDistribuidor,nitDistribuidor,  telefonoDistribuidor, web) values
+	('Carnes', 'Quiche', '2020-602', '8989-3202', 'www.CarnesGuatemala.com'),
+    ('Muebles', 'Baja Verapaz', '2020-495', '5691-3979', 'www.MueblesGuatemala.com');
 
 
 
