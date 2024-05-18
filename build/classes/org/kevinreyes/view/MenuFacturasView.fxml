@@ -19,7 +19,7 @@
             <Image url="@../image/MenuFacturasView.png" />
          </image>
       </ImageView>
-      <TextField fx:id="tfFacturaId" layoutX="72.0" layoutY="226.0" />
+      <TextField fx:id="tfFacturaId" editable="false" layoutX="72.0" layoutY="226.0" />
       <TextField fx:id="tfHora" layoutX="72.0" layoutY="313.0" />
       <TextField fx:id="tfFecha" layoutX="72.0" layoutY="389.0" />
       <TextField fx:id="tfTotal" layoutX="72.0" layoutY="473.0" />

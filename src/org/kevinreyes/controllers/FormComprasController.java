@@ -71,7 +71,7 @@ public class FormComprasController implements Initializable {
     public void cargarDatos(Compras compras) {
     tfComprasId.setText(Integer.toString(compras.getCompraId()));
 
-    SimpleDateFormat formato = new SimpleDateFormat("yyyy/mm/dd");
+    SimpleDateFormat formato = new SimpleDateFormat("yyyy/MM/dd");
     tfFecha.setText(formato.format(compras.getFechaCompra()));
     }
 

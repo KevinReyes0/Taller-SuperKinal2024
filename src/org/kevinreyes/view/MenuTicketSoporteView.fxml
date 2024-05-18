@@ -20,7 +20,7 @@
       </ImageView>
       <TextArea fx:id="txDescripcion" layoutX="966.0" layoutY="233.0" prefHeight="390.0" prefWidth="370.0" wrapText="true" />
       <ComboBox fx:id="cmbCliente" layoutX="310.0" layoutY="232.0" prefHeight="28.0" prefWidth="270.0" />
-      <ComboBox fx:id="cmbFactura" layoutX="619.0" layoutY="232.0" prefHeight="28.0" prefWidth="270.0" />
+      <ComboBox layoutX="619.0" layoutY="232.0" prefHeight="28.0" prefWidth="270.0" />
       <TextField fx:id="tfTicketId" editable="false" layoutX="71.0" layoutY="233.0" prefHeight="26.0" prefWidth="166.0" promptText="Factura Id">
          <font>
             <Font size="14.0" />

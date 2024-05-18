@@ -50,7 +50,7 @@ public class MenuTicketSoporteController implements Initializable {
     TableView tblClientes;
     
     @FXML
-    TableColumn colcolTicketId, colDescripcion, colEstatus, colClienteId, colFacturaId;
+    TableColumn colTicketId, colDescripcion, colEstatus, colClienteId, colFacturaId;
     
     @FXML
     TextArea txDescripcion;
@@ -86,9 +86,9 @@ public class MenuTicketSoporteController implements Initializable {
     //cargar datos en la tableView
     public void cargarDatos(){
         tblClientes.setItems(listarTickets());
-        colcolTicketId.setCellValueFactory(new PropertyValueFactory<TicketSoporte, Integer >("ticketSoportId"));
+        colTicketId.setCellValueFactory(new PropertyValueFactory<TicketSoporte, Integer >("ticketSoportId"));
         colDescripcion.setCellValueFactory(new PropertyValueFactory<TicketSoporte, Integer >("descripcionTicket"));
-        colEstatus.setCellValueFactory(new PropertyValueFactory<TicketSoporte, Integer >("status"));
+        colEstatus.setCellValueFactory(new PropertyValueFactory<TicketSoporte, Integer >("estatus"));
         colClienteId.setCellValueFactory(new PropertyValueFactory<TicketSoporte, Integer >("cliente"));
         colFacturaId.setCellValueFactory(new PropertyValueFactory<TicketSoporte, Integer >("facturaId"));
     }
@@ -139,7 +139,7 @@ public class MenuTicketSoporteController implements Initializable {
             while(resultSet.next()){
                 int ticketSoporteId = resultSet.getInt("ticketSoporteId");
                 String descripcion = resultSet.getString("descripcionTicket");
-                String estatus = resultSet.getString ("estatuts");
+                String estatus = resultSet.getString ("estatus");
                 String cliente = resultSet.getString ("cliente");
                 int facturaId = resultSet.getInt("facturaId");
                 
@@ -235,6 +235,7 @@ public class MenuTicketSoporteController implements Initializable {
         try{
             conexion = Conexion.getInstance().obtenerConexion();
             String sql = "sp_EditarTicketSoporte(?,?,?,?,?)";
+            statement = conexion.prepareStatement(sql);
             statement.setInt(1, Integer.parseInt(tfTicketId.getText()));
             statement.setString(2, txDescripcion.getText());
             statement.setString(3, cmbEstatus.getSelectionModel().getSelectedItem().toString());
