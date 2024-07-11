@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<AnchorPane id="AnchorPane" prefHeight="650.0" prefWidth="1350.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.kevinreyes.controllers.MenuProductosController">
+   <children>
+      <ImageView fitHeight="650.0" fitWidth="1350.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/MenuProductosView.png" />
+         </image>
+      </ImageView>
+      <TableView fx:id="tblProductos" layoutX="83.0" layoutY="177.0" opacity="0.88" prefHeight="440.0" prefWidth="1060.0">
+         <columns>
+            <TableColumn fx:id="colProductoId" prefWidth="75.0" text="ProductoId" />
+            <TableColumn fx:id="colNombre" minWidth="75.0" prefWidth="122.0" text="Nombre" />
+            <TableColumn fx:id="colDescripcion" prefWidth="148.0" text="Descripcion" />
+            <TableColumn fx:id="colCantidad" minWidth="101.0" prefWidth="101.0" text="Cantidad" />
+            <TableColumn fx:id="colPrecioUnidad" minWidth="83.0" prefWidth="90.0" text="Precio Unidad" />
+            <TableColumn fx:id="colPrecioMayor" minWidth="105.0" prefWidth="105.0" text="Precio por Mayor" />
+            <TableColumn fx:id="colPrecioCompra" minWidth="87.0" prefWidth="131.0" text="Precio Compra" />
+            <TableColumn fx:id="colImagen" minWidth="35.0" prefWidth="89.0" text="Imagen" />
+            <TableColumn fx:id="colDistribuidorId" minWidth="8.0" prefWidth="97.0" text="Distribuidor Id" />
+            <TableColumn fx:id="colCategoriaPId" prefWidth="101.0" text="Categoria P. Id" />
+         </columns>
+      </TableView>
+      <Button fx:id="btnRegresar" layoutX="24.0" layoutY="32.0" minWidth="19.0" mnemonicParsing="false" onAction="#handleButtonAction" opacity="0.68" prefHeight="35.0" prefWidth="45.0" style="-fx-background-radius: 10;" textFill="#f25c05">
+         <graphic>
+            <ImageView fitHeight="49.0" fitWidth="72.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../resources/regresar.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <TextField fx:id="tfBuscar" layoutX="906.0" layoutY="105.0" prefHeight="25.0" prefWidth="237.0" promptText="Ingrese el id del usuario" />
+      <Button fx:id="btnBuscar" layoutX="1164.0" layoutY="94.0" minWidth="45.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="38.0" prefWidth="45.0" textFill="#f25c05">
+         <graphic>
+            <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../resources/Lupa.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <GridPane layoutX="1164.0" layoutY="177.0" prefHeight="440.0" prefWidth="160.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <Button fx:id="btnAgregar" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="70.0" prefWidth="100.0" text="Agregar" GridPane.halignment="CENTER" />
+            <Button fx:id="btnEditar" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="70.0" prefWidth="100.0" text="Editar" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+            <Button fx:id="btnEliminar" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="70.0" prefWidth="100.0" text="Eliminar" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+            <Button fx:id="btnReportes" mnemonicParsing="false" prefHeight="70.0" prefWidth="100.0" text="Reportes" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+         </children>
+      </GridPane>
+      <Button fx:id="btnVerProducto" layoutX="783.0" layoutY="59.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="70.0" prefWidth="100.0" text="Ver Producto" />
+   </children>
+</AnchorPane>
