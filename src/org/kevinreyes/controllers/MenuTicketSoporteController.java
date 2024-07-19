@@ -41,7 +41,7 @@ public class MenuTicketSoporteController implements Initializable {
     private static ResultSet resultSet = null; 
     
     @FXML
-    ComboBox cmbEstatus, cmbCliente;
+    ComboBox cmbEstatus, cmbCliente, cmbFacturas;
     
     @FXML
     Button btnRegresar, btnGuardar, btnVaciarForm;
@@ -57,6 +57,14 @@ public class MenuTicketSoporteController implements Initializable {
     
     @FXML
     TextField tfTicketId;
+    
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        cargarCmbFacturas();
+        cargarCmbEstatus();
+        cmbCliente.setItems(listarClientes()); 
+        cargarDatos();
+    }   
     
     @FXML
     public void handleButtonAction (ActionEvent event){
@@ -88,7 +96,7 @@ public class MenuTicketSoporteController implements Initializable {
         tblClientes.setItems(listarTickets());
         colTicketId.setCellValueFactory(new PropertyValueFactory<TicketSoporte, Integer >("ticketSoportId"));
         colDescripcion.setCellValueFactory(new PropertyValueFactory<TicketSoporte, Integer >("descripcionTicket"));
-        colEstatus.setCellValueFactory(new PropertyValueFactory<TicketSoporte, Integer >("status"));
+        colEstatus.setCellValueFactory(new PropertyValueFactory<TicketSoporte, Integer >("estatus"));
         colClienteId.setCellValueFactory(new PropertyValueFactory<TicketSoporte, Integer >("cliente"));
         colFacturaId.setCellValueFactory(new PropertyValueFactory<TicketSoporte, Integer >("facturaId"));
     }
@@ -119,6 +127,12 @@ public class MenuTicketSoporteController implements Initializable {
          return INDEX;
     }
     
+    // cargar combobox de factura
+    
+    public void cargarCmbFacturas(){
+        cmbFacturas.getItems().add(1);
+    }
+    
     //cargar combobox de estatus
     public void cargarCmbEstatus(){
         cmbEstatus.getItems().add("En proceso");
@@ -139,7 +153,7 @@ public class MenuTicketSoporteController implements Initializable {
             while(resultSet.next()){
                 int ticketSoporteId = resultSet.getInt("ticketSoporteId");
                 String descripcion = resultSet.getString("descripcionTicket");
-                String estatus = resultSet.getString ("estatuts");
+                String estatus = resultSet.getString ("estatus");
                 String cliente = resultSet.getString ("cliente");
                 int facturaId = resultSet.getInt("facturaId");
                 
@@ -259,12 +273,7 @@ public class MenuTicketSoporteController implements Initializable {
         }
     }
     
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        cargarCmbEstatus();
-        cmbCliente.setItems(listarClientes()); 
-        cargarDatos();
-    }   
+    
 
     public Main getStage() {
         return stage;

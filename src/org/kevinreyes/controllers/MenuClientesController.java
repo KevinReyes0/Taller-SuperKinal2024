@@ -25,6 +25,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import org.kevinreyes.dao.Conexion;
 import org.kevinreyes.dto.ClienteDTO;
 import org.kevinreyes.model.Cliente;
+import org.kevinreyes.report.GenerarReporteUsuario;
 import org.kevinreyes.system.Main;
 
 /**
@@ -46,7 +47,7 @@ public class MenuClientesController implements Initializable {
     TableColumn colClienteId, colNombre, colApellido, colTelefono, colDireccion, colNit;
     
     @FXML
-    Button btnAgregar, btnEditar, btnRegresar, btnEliminar, btnBuscar, btnReportes;
+    Button btnAgregar, btnEditar, btnRegresar, btnEliminar, btnBuscar, btnReportes, btnVerCliente;
     
     @FXML
     TextField tfBuscar;
@@ -85,6 +86,8 @@ public class MenuClientesController implements Initializable {
                 colNit.setCellValueFactory(new PropertyValueFactory<Cliente, Integer >("nit"));
                 
             }
+        }else if(event.getSource() == btnVerCliente){
+            GenerarReporteUsuario.getInstance().generarCliente(((Cliente)tblClientes.getSelectionModel().getSelectedItem()).getClienteId());
         }
      
     }

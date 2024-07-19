@@ -4,6 +4,12 @@ create database if not exists SuperKinal;
 
 use SuperKinal;
 
+create table NivelesAcceso(
+	nivelAccesoId int not null auto_increment,
+    nivelAcceso varchar(40) not null,
+    primary key PK_nivelAccesoId(nivelAccesoId)
+);
+
 create table Cargos(
 	cargoId int not null auto_increment,
     nombreCargo varchar (30) not null,
@@ -68,7 +74,7 @@ create table Promociones(
     precioPromocion decimal (10,2) not null,
     descripcionPromocion varchar (100),
     fechaInicio date not null,
-    fechaFinalizacionn date not null,
+    fechaFinalizacion date not null,
     productoId int not null,
     primary key PK_promocionId (promocionId),
     constraint FK_Promociones_Productos foreign key (productoId)
@@ -103,6 +109,20 @@ create table Empleados (
 		references Cargos (cargoId)
 );
 
+
+create table Usuarios(
+	usuarioId int not null auto_increment,
+    usuario varchar(30) not null,
+    contrasenia varchar(200) not null,
+    nivelAccesoId int not null,
+    empleadoId int not null,
+    primary key PK_usuarioId(usuarioId),
+    constraint FK_Usuarios_NivelesAcceso foreign key Usuarios(nivelAccesoId)
+		references NivelesAcceso(nivelAccesoId),
+	constraint PK_Usuarios_Empleados foreign key Usuarios(empleadoId)
+		references Empleados(empleadoId)
+);
+
 create table Facturas (
 	facturaId int not null auto_increment,
     fecha date not null,
@@ -120,7 +140,7 @@ create table Facturas (
 create table TicketSoporte (
 	ticketSoporteId int not null auto_increment,
     descripcionTicket varchar (250) not null,
-    estatuts varchar (30) not null,
+    estatus varchar (30) not null,
     clienteId int not null,
     facturaId int not null,
     primary key PK_ticketSoporteId (ticketSoporteId),
@@ -140,6 +160,37 @@ create table DetalleFactura (
 	constraint FK_DetalleFactura_Productos foreign key (productoId)
 		references Productos (productoId)
 );
+insert into Cargos(nombreCargo,descripcionCargo)values
+		('Jefe','Dueño de la empresa'),
+		('Empleado ','ayuda a vender en la tienda ');
+
+insert into Empleados(nombreEmpleado ,apellidoEmpleado ,sueldo ,horaEntrada ,horaSalida ,cargoId)values
+		('Kevin','reyes',55000.00 ,'06:30:00','17:30:00',1),
+		('Jose','Ajcu',3000.00 ,'06:30:00','17:30:00',1);
+
+
+insert into Clientes(nombre, apellido, telefono, direccion, nit) values
+	('Sergio', 'Calderon', '9090=6023', 'Peten', 'CF'),
+    ('Kevin', 'Reyes', '9020=6013', 'Antigua', 'CF');
+
+insert into CategoriaProductos (nombreCategoria, decripcionCategoria) values
+	('Tecnologia', 'Se trata de todo lo que tiene que ver con tecnologias'),
+    ('Cocina', 'Se trata de toda el area de cocina');
+    
+insert into Distribuidores (nombreDistribuidor, direccionDistribuidor,nitDistribuidor,  telefonoDistribuidor, web) values
+	('Carnes', 'Quiche', '2020-602', '8989-3202', 'www.CarnesGuatemala.com'),
+    ('Muebles', 'Baja Verapaz', '2020-495', '5691-3979', 'www.MueblesGuatemala.com');
+
+insert into NivelesAcceso(nivelAcceso)values
+		('Administrador'),
+		('Usuarios');
+
+insert into Usuarios(usuario, contrasenia, nivelAccesoId, empleadoId)values
+		('kevin', '$2a$10$IYgQkW2ADTG.rpZxiA9HquLd.voYWyY/7iu6a5m25RTAZygbw424W',1, 1);
+        
+
+
+
 
 
 
